@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 import './index.css';
 import App from './App';
+import Day1 from './art/Day1';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      )} />
+      <Route path="day1" element={<Day1/>} />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
