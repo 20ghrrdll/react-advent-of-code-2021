@@ -9,6 +9,7 @@ const Nav = () => {
         paddingBottom: "1rem"
       }}
     >
+      <Link to="/">Home</Link>
       <Link to="/day1">Day 1</Link>
       <Link to="/day2">Day 2</Link>
     </nav>
