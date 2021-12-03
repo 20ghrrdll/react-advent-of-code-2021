@@ -1,3 +1,4 @@
+const data = `
 forward 6
 forward 8
 down 6
@@ -997,4 +998,6 @@ forward 2
 down 6
 down 1
 down 9
-forward 6
+forward 6`;
+
+export default data;
