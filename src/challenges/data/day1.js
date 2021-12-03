@@ -1,4 +1,9 @@
-130
+// is this horrendous? yes. would I ever do anything like this irl? no.
+// but cannot use fs without an actual server and the fun is in the other challenges
+//  so here we are lol
+
+const data = 
+`130
 142
 148
 147
@@ -1997,4 +2002,6 @@
 2061
 2068
 2088
-2097
+2097`;
+
+export default data;

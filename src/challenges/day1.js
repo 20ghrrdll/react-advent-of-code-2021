@@ -1,8 +1,9 @@
 import getDataString from "./utils/getDataString";
+import data from './data/day1';
 
 const parseMeasurements = () => {
-  const measurementString = getDataString('../data/day1.txt');
-  const splitMeasurements =  measurementString.split(/\r?\n/);
+  //const measurementString = getDataString(data);
+  const splitMeasurements =  data.split(/\r?\n/);
   return splitMeasurements.map(measurement => parseInt(measurement));
 }
 
@@ -37,9 +38,11 @@ const countThreeMeasurementIncreases = (measurements) => {
   return numIncreases;
 }
 
-export const getSoln = () => {
+const getSoln = () => {
   const parsedMeasurements = parseMeasurements()
   return `
     Num increases ${countIncreases(parsedMeasurements)},
     num three-measurement increases ${countThreeMeasurementIncreases(parsedMeasurements)}`
 }
+
+export default getSoln;

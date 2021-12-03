@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 import './index.css';
 import App from './App';
-import Day1 from './art/Day1';
+import Day1Art from './art/Day1Art';
+import Day2Art from './art/Day2Art';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -18,7 +19,8 @@ ReactDOM.render(
           <App />
         </React.StrictMode>
       )} />
-      <Route path="day1" element={<Day1/>} />
+      <Route path="day1" element={<Day1Art/>} />
+      <Route path="day2" element={<Day2Art/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
