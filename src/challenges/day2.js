@@ -1,23 +1,23 @@
-import getDataArray from './utils/getDataArray';
-import data from './data/day2';
+import getDataArray from "./utils/getDataArray";
+import data from "./data/day2";
 
 const calculateDirectionProduct = (directions) => {
   let depth = 0;
   let horizontal = 0;
 
-  for(const direction of directions) {
+  for (const direction of directions) {
     const [command, value] = direction.split(" ");
     const numericalValue = parseInt(value);
 
     switch (command) {
       case "forward":
-        horizontal += numericalValue
+        horizontal += numericalValue;
         break;
       case "down":
-        depth += numericalValue
+        depth += numericalValue;
         break;
       case "up":
-        depth -= numericalValue
+        depth -= numericalValue;
         break;
       default:
         break;
@@ -26,25 +26,25 @@ const calculateDirectionProduct = (directions) => {
   return depth * horizontal;
 };
 
-const calculateAimDirectionProduct = (directions) =>  {
+const calculateAimDirectionProduct = (directions) => {
   let depth = 0;
   let horizontal = 0;
   let aim = 0;
 
-  for(const direction of directions) {
+  for (const direction of directions) {
     const [command, value] = direction.split(" ");
     const numericalValue = parseInt(value);
 
     switch (command) {
       case "forward":
-        horizontal += numericalValue
-        depth += (aim * numericalValue)
+        horizontal += numericalValue;
+        depth += aim * numericalValue;
         break;
       case "down":
-        aim += numericalValue
+        aim += numericalValue;
         break;
       case "up":
-        aim -= numericalValue
+        aim -= numericalValue;
         break;
       default:
         break;
@@ -60,7 +60,7 @@ const getSoln = () => {
   return {
     part1: calculateDirectionProduct(directions),
     part2: calculateAimDirectionProduct(directions),
-  }
-}
+  };
+};
 
 export default getSoln;

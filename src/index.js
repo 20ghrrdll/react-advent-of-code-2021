@@ -1,29 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
-import './index.css';
-import App from './App';
-import Day1Art from './art/Day1Art';
-import Day2Art from './art/Day2Art';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import Day1Art from "./art/Day1Art";
+import Day2Art from "./art/Day2Art";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      )} />
-      <Route path="day1" element={<Day1Art/>} />
-      <Route path="day2" element={<Day2Art/>} />
+      <Route
+        path="/"
+        element={
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        }
+      />
+      <Route path="day1" element={<Day1Art />} />
+      <Route path="day2" element={<Day2Art />} />
     </Routes>
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

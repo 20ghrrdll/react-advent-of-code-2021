@@ -2,8 +2,7 @@
 // but cannot use fs without an actual server and the fun is in the other challenges
 //  so here we are lol
 
-const data = 
-`130
+const data = `130
 142
 148
 147
