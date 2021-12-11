@@ -3,7 +3,7 @@ import {
   getIsBingo,
   calculateBoardScore,
   getWinningBoardScore,
-} from '../day4';
+} from "../day4";
 
 import {
   correctBingoBoard1Nums,
@@ -11,13 +11,13 @@ import {
   correctlyParsedBingoBoard1,
   verticalBingo,
   horizontalBingo,
-  noBingo
-} from './day4TestData';
+  noBingo,
+} from "./day4TestData";
 
-import { tinyData } from '../data/day4';
+import { tinyData } from "../data/day4";
 
-describe('day4 part 1', () => {
-  test('parses bingo data correctly', () => {
+describe("day4 part 1", () => {
+  test("parses bingo data correctly", () => {
     const { bingoDrawNums, bingoBoards } = parseBingoData(tinyData);
     const firstBingoBoard = bingoBoards[0];
 
@@ -27,7 +27,7 @@ describe('day4 part 1', () => {
     expect(firstBingoBoard.boardNumbers).toEqual(correctBingoBoard1Nums);
   });
 
-  test('accepts a correct bingo', () => {
+  test("accepts a correct bingo", () => {
     const isVerticalBingo = getIsBingo(verticalBingo);
     const isHorizontalBingo = getIsBingo(horizontalBingo);
 
@@ -35,22 +35,22 @@ describe('day4 part 1', () => {
     expect(isHorizontalBingo).toBeTruthy();
   });
 
-  test('rejects an incorrect bingo', () => {
+  test("rejects an incorrect bingo", () => {
     const isBingo = getIsBingo(noBingo);
 
     expect(isBingo).toBeFalsy();
   });
 
-  test('calculate correct winning score', () => {
+  test("calculate correct winning score", () => {
     const winningScore = calculateBoardScore(verticalBingo, 11);
-    
+
     expect(winningScore).toBe(1529);
   });
 
-  test('identifies and calculates correct winning board score', () => {
+  test("identifies and calculates correct winning board score", () => {
     const parsedTinyData = parseBingoData(tinyData);
     const correctWinningScore = getWinningBoardScore(parsedTinyData);
 
     expect(correctWinningScore).toBe(4512);
   });
-})
+});

@@ -2,7 +2,7 @@ import data from "./data/day4";
 
 export const parseBingoData = (rawData) => {
   const bingoDataChunks = rawData.split("\n\n");
-  const bingoDrawNums = bingoDataChunks[0].split(',');
+  const bingoDrawNums = bingoDataChunks[0].split(",");
   const bingoBoards = [];
 
   for (
@@ -18,7 +18,8 @@ export const parseBingoData = (rawData) => {
       const row = [];
       const gridNums = rowDatum.split(" ");
       gridNums.forEach((num) => {
-        if (num) { // because single digit numbers have an extra space on the front which adds empty string entries :/
+        if (num) {
+          // because single digit numbers have an extra space on the front which adds empty string entries :/
           boardNumbers.set(num, { row: parseInt(rowIndex), col: row.length });
           row.push({ num, marked: false });
         }
@@ -85,9 +86,9 @@ export const getIsBingo = (bingoBoard) => {
 
 export const calculateBoardScore = (bingoBoard, winningNum) => {
   let unmarkedNumSum = 0;
-  for(const row of bingoBoard) {
+  for (const row of bingoBoard) {
     for (const boardNum of row) {
-      const {marked, num} = boardNum;
+      const { marked, num } = boardNum;
       if (!marked) {
         unmarkedNumSum += parseInt(num);
       }
@@ -97,50 +98,52 @@ export const calculateBoardScore = (bingoBoard, winningNum) => {
   return unmarkedNumSum * parseInt(winningNum);
 };
 
-export const getWinningBoardScore = ({bingoDrawNums, bingoBoards}) => {
+export const getWinningBoardScore = ({ bingoDrawNums, bingoBoards }) => {
   // mark first 4 nums
-  
-  for (let initialDrawNumIndex = 0; initialDrawNumIndex < 4; initialDrawNumIndex ++) {
+
+  for (
+    let initialDrawNumIndex = 0;
+    initialDrawNumIndex < 4;
+    initialDrawNumIndex++
+  ) {
     const initialDrawNum = bingoDrawNums[initialDrawNumIndex];
     for (const boardData of bingoBoards) {
       const { bingoBoard, boardNumbers } = boardData;
       if (boardNumbers.has(initialDrawNum)) {
-        const {row, col} = boardNumbers.get(initialDrawNum);
+        const { row, col } = boardNumbers.get(initialDrawNum);
         const currNumData = bingoBoard[row][col];
-        bingoBoard[row][col] = {...currNumData, marked: true};
+        bingoBoard[row][col] = { ...currNumData, marked: true };
       }
     }
   }
-
 
   let drawNumIndex = 4;
   let winningBoard = null;
   let currentDrawNum;
   // from 5th mark on
-  while(!winningBoard && drawNumIndex < bingoDrawNums.length) {
+  while (!winningBoard && drawNumIndex < bingoDrawNums.length) {
     //mark next num
     currentDrawNum = bingoDrawNums[drawNumIndex];
     for (const boardData of bingoBoards) {
       const { bingoBoard, boardNumbers } = boardData;
       if (boardNumbers.has(currentDrawNum)) {
-        const {row, col} = boardNumbers.get(currentDrawNum);
+        const { row, col } = boardNumbers.get(currentDrawNum);
         const currNumData = bingoBoard[row][col];
-        bingoBoard[row][col] = {...currNumData, marked: true};
+        bingoBoard[row][col] = { ...currNumData, marked: true };
         if (getIsBingo(bingoBoard)) {
           winningBoard = bingoBoard;
           break;
         }
       }
     }
-    drawNumIndex+=1;
+    drawNumIndex += 1;
   }
 
   if (winningBoard) {
     return calculateBoardScore(winningBoard, currentDrawNum);
   } else {
-    console.error('oh no! none of the boards seem to have gotten bingo!');
+    console.error("oh no! none of the boards seem to have gotten bingo!");
   }
-  
 };
 
 const getSoln = () => {
