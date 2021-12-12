@@ -12,4 +12,7 @@ Because advent of code is fun and art is fun. What more do you need?
 
 Probably not lol
 
+### Where did you get the image assets?
+I made them in Sketch!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
