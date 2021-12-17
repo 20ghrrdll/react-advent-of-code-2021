@@ -7,6 +7,7 @@ import Day1Art from "./art/Day1Art";
 import Day2Art from "./art/Day2Art";
 import Day3Art from "./art/Day3Art";
 import Day4Art from "./art/Day4Art";
+import Day5Art from "./art/Day5Art";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Route path="day2" element={<Day2Art />} />
       <Route path="day3" element={<Day3Art />} />
       <Route path="day4" element={<Day4Art />} />
+      <Route path="day5" element={<Day5Art />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")

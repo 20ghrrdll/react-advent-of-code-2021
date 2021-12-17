@@ -14,6 +14,7 @@ const Nav = () => {
       <Link to="/day2">Day 2</Link>
       <Link to="/day3">Day 3</Link>
       <Link to="/day4">Day 4</Link>
+      <Link to="/day5">Day 5</Link>
     </nav>
   );
 };
