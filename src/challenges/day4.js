@@ -146,10 +146,70 @@ export const getWinningBoardScore = ({ bingoDrawNums, bingoBoards }) => {
   }
 };
 
+export const getLosingBoardScore = ({ bingoDrawNums, bingoBoards }) => {
+  for (
+    let initialDrawNumIndex = 0;
+    initialDrawNumIndex < 4;
+    initialDrawNumIndex++
+  ) {
+    const initialDrawNum = bingoDrawNums[initialDrawNumIndex];
+    for (const boardData of bingoBoards) {
+      const { bingoBoard, boardNumbers } = boardData;
+      if (boardNumbers.has(initialDrawNum)) {
+        const { row, col } = boardNumbers.get(initialDrawNum);
+        const currNumData = bingoBoard[row][col];
+        bingoBoard[row][col] = { ...currNumData, marked: true };
+      }
+    }
+  }
+
+  let drawNumIndex = 4;
+  const remainingBoards = new Set(bingoBoards);
+
+  function removeIrrelevantBoards (boardData, currentDrawNum) {
+    const { bingoBoard, boardNumbers } = boardData;
+      if (boardNumbers.has(currentDrawNum)) {
+        const { row, col } = boardNumbers.get(currentDrawNum);
+        const currNumData = bingoBoard[row][col];
+        bingoBoard[row][col] = { ...currNumData, marked: true };
+        if (getIsBingo(bingoBoard) && remainingBoards.size > 1) {
+         remainingBoards.delete(boardData)
+        }
+      }
+  }
+
+  while (remainingBoards.size > 1 && drawNumIndex < bingoDrawNums.length) {
+    //mark next num
+    const drawNum = bingoDrawNums[drawNumIndex];
+    remainingBoards.forEach(function (boardData) {
+      removeIrrelevantBoards(boardData, drawNum);
+    });
+    drawNumIndex += 1;
+  };
+
+  if (remainingBoards.size === 1) {
+    const {bingoBoard: losingBingoBoard, boardNumbers: losingBoardNumbers} = remainingBoards.values().next().value;
+    while (!getIsBingo(losingBingoBoard)) {
+      const drawNum = bingoDrawNums[drawNumIndex];
+      if (losingBoardNumbers.has(drawNum)) {
+        const { row, col } = losingBoardNumbers.get(drawNum);
+        const currNumData = losingBingoBoard[row][col];
+        losingBingoBoard[row][col] = { ...currNumData, marked: true };
+      }
+
+      drawNumIndex +=1;
+    }
+
+    return calculateBoardScore(losingBingoBoard, bingoDrawNums[drawNumIndex - 1]);
+  } else {
+    console.error("oh no! there isn't just one board left! remainingBoards is", remainingBoards);
+  }
+};
+
 const getSoln = () => {
   const bingoData = parseBingoData(data);
 
-  return { part1: getWinningBoardScore(bingoData) };
+  return { part1: getWinningBoardScore(bingoData), part2: getLosingBoardScore(bingoData) };
 };
 
 export default getSoln;
